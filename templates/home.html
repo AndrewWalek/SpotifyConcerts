@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+    <link rel = 'stylesheet' href = "{{url_for('static', filename = 'css/style3.css')}}">
+    <link rel = 'stylesheet' href = "{{url_for('static', filename = 'css/home.css')}}">
+    <h1 class = 'header'>
+        Concert Finder for Spotify Playlists
+    </h1>
+    <div>
+        <p>
+            This web app lets you find shows based on your personal playlists
+        </p>
+        <ol>
+            <li>Log in to Spotify</li>
+            <li>Pick your favorite playlist</li>
+            <li>Filter by a city</li>
+            <li>Find your next show!</li>
+        </ol>
+        <img src = 'unsplash_concert.jpg' alt = 'Concert'/>
+        <div id = 'starting_button'>
+            <button onclick = "window.location.href = '/authorize'">
+                Click here to start finding concerts!
+            </a>
+        </div>
+    </div>

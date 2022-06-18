@@ -1,0 +1,38 @@
+h1 {
+    font-size: 70px;
+    font-weight: 500;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 1px ghostwhite;
+}
+
+p, ol {
+    font-size: 50px;
+    width: 1000px;
+    font-weight: lighter;
+    color: white;
+    padding-left: 100px;
+}
+
+ol {
+    padding-left: 160px;
+}
+
+#starting_button {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    font-size: 50px;
+    border-radius: 12px;
+    background-color: ghostwhite;
+    padding: 15px;
+    color: rgba(29,185,84,1);
+    font-weight: 400;
+}
+
+button:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    cursor: pointer;
+    transition: 0.4s;
+}

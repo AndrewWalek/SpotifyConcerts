@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+    <link rel = 'stylesheet' href = "{{url_for('static', filename = 'css/playlists.css')}}">
+    <link rel = 'stylesheet' href = "{{url_for('static', filename = 'css/style3.css')}}">
+    <h1 class = 'header'>
+        Choose from one of your playlists and get upcoming concerts for the artists in the playlist!
+    </h1>
+    {% block content %}
+        <ul class='list-group'>
+            {% if playlist_info|length > 0 %}
+                {% for playlist in playlist_info %}
+                    {% set playlist_id = playlist['id'] %}
+                    <div class = 'embedded_playlist'>
+                        <div style = "position:relative">
+                        <iframe src='https://open.spotify.com/embed/playlist/{{ playlist_id }}' 
+                            width = '80%' height = '100' frameBorder = '200' allowfullscreen = '' 
+                            allow = 'autoplay; clipboard-write; 
+                            encrypted-media; fullscreen; picture-in-picture';>
+                        </iframe>
+                        <a href = '/selectedplaylist/{{ playlist_id }}'>
+                            Use this playlist
+                        </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+            <div class = 'box'>
+                You don't have any playlists yet
+            </div>
+            {% endif %}
+        </ul>
+    {% endblock %}
+</html>

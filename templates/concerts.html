@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset = "utf-8">
+    <meta name = "viewport" content = "width=device-width, initial-scale=1">
+    <link rel = 'stylesheet' href = "{{url_for('static', filename = 'css/concerts3.css')}}">
+    <link rel = 'stylesheet' href = "{{url_for('static', filename = 'css/style3.css')}}">
+    <link rel = 'stylesheet' href = 'https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css'>
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <h1 class = 'header'>
+        Here are the concerts for the artists from your playlist
+    </h1>
+    <hr id = 'line'>
+    <div class = 'filter_city'>
+        <label>
+            Filter concerts results by a city (leave blank to get all concerts)
+            <input type = 'text' id = 'city'>
+        </label>
+        <a href = '' onclick = "this.href=window.location.href +'/' + document.getElementById('city').value">Submit</a>
+    </div>
+    {% block content %}
+        <div class = 'all_concerts'>
+            {% if concert_info|length > 0 %}
+                {% for artist in concert_info %}
+                    <div class = 'artist_concerts'>
+                        <button class = "accordion">{{ artist }}</button>
+                        <div class = 'panel'>
+                            <table class = 'table'>
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Date and Time</th>
+                                        <th>Venue</th>
+                                        <th>Location</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for concert in concert_info[artist] %}
+                                        {% set name = concert['name'] %}
+                                        {% set date = concert['date'] %}
+                                        {% set venue = concert['venue'] %}
+                                        {% set url = concert['url'] %}
+                                        {% set state = concert['state'] %}
+                                        {% set city = concert['city'] %}
+                                        <tr>
+                                            <td>
+                                                <a href = {{url}}>
+                                                    {{name}}
+                                                </a>
+                                            </td>
+                                            <td>{{ date }}</td>
+                                            <td>{{ venue }}</td>
+                                            <td>{{ city }}, {{ state }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class = 'box'>
+                    No concerts match your query
+                </div>
+            {% endif %}
+        </div>
+    {% endblock %}
+
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+        
+        for (i = 0; i < acc.length; i++) {
+          acc[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+              panel.style.display = "none";
+            } else {
+              panel.style.display = "block";
+            }
+          });
+        }
+        </script>
+</html>
