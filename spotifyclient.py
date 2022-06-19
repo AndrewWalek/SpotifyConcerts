@@ -11,7 +11,7 @@ class SpotifyClient():
     client_secret = None
     refresh_token = None
     auth_header = None
-    redirect_uri = config.spotify_credentials['REDIRECT_URI']
+    redirect_uri = config.sp_redirect_uri
     token_url = 'https://accounts.spotify.com/api/token'
     auth_url = 'https://accounts.spotify.com/authorize?'
 

@@ -6,7 +6,7 @@ from seatgeekclient import SeatGeekClient
 app = Flask(__name__)
 app.secret_key = 'super secret key omg'
 
-sp = SpotifyClient(config.spotify_credentials['CLIENT_ID'], config.spotify_credentials['CLIENT_SECRET'])
+sp = SpotifyClient(config.sp_client_id, config.sp_client_secret)
 
 @app.route('/')
 def index():
@@ -33,7 +33,7 @@ def selected_playlist(id, city):
     if playlist_songs == 'error':
         return render_template('error.html')
     artists = sp.get_artists(playlist_songs)
-    sg = SeatGeekClient(config.seatgeek_credentials['CLIENT_ID'], config.seatgeek_credentials['API_KEY'])
+    sg = SeatGeekClient(config.sg_client_id, config.sg_api_key)
     concerts =  sg.get_events(artists, city)
     return render_template('concerts.html', concert_info = concerts)
 
@@ -44,5 +44,5 @@ def selected_playlist_redirect(id, city1, city2):
         return redirect('/selectedplaylist/' + id)
     return(redirect('/selectedplaylist/' + id + '/' + city2))
 
-if __name__ == '__main__':
-    app.run(host = '127.0.0.1', port = 8080, debug = True)
+# if __name__ == '__main__':
+#    app.run(host = '127.0.0.1', port = 8080, debug = True)
