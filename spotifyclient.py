@@ -1,8 +1,8 @@
 import base64
 import datetime
 import requests
-from boto.s3.connection import S3Connection
 import logging
+import os
 
 class SpotifyClient():
     access_token = None
@@ -11,7 +11,7 @@ class SpotifyClient():
     client_secret = None
     refresh_token = None
     auth_header = None
-    sp_redirect_uri = S3Connection(os.environ['sp_redirect_uri'])
+    sp_redirect_uri = os.environ['sp_redirect_uri']
     redirect_uri = sp_redirect_uri
     token_url = 'https://accounts.spotify.com/api/token'
     auth_url = 'https://accounts.spotify.com/authorize?'
